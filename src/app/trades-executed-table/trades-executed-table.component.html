@@ -1,0 +1,36 @@
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Premium Name</th>
+            <th>Entered At</th>
+            <th>Exited At</th>
+            <th>Trade Price</th>
+            <th>Take Profit</th>
+            <th>SL Target</th>
+            <th>Trade Decision</th>
+            <th>Lot size</th>
+            <th>Capital</th>
+            <th>Status</th>
+            <th>Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let tradeData of tradeDataArray">
+            <td>{{tradeData.orderId}}</td>
+            <td>{{tradeData.premiumName}}</td>
+            <td>{{formatTime(tradeData.enteredAt)}}</td>
+            <td>{{ tradeData.exitedAt ? formatTime(tradeData.exitedAt) : "--"}}</td>
+            <td>{{tradeData.tradePrice}}</td>
+            <td>{{tradeData.takeProfit}}</td>
+            <td>{{tradeData.stopLossTarget}}</td>
+            <td>{{tradeData.tradeDecision}}</td>
+            <td>{{tradeData.lotSize}}</td>
+            <td>Rs.{{tradeData.investedMoney}}</td>
+            <td class="fw-bold"
+                [ngClass]="{'profit': tradeData.status === 'PROFIT', 'loss': tradeData.status === 'LOSS'}">
+                {{tradeData.status}}</td>
+            <td class="fw-bold">Rs.{{tradeData.diffInvestment}}</td>
+        </tr>
+    </tbody>
+</table>

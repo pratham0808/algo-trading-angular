@@ -1,0 +1,16 @@
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">Timestamp</th>
+            <th scope="col">Signal Type</th>
+            <th scope="col">Index Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let signal of signals">
+            <td>{{signal.timeStamp}}</td>
+            <td>{{signal.tradeDecision}}</td>
+            <td>{{signal.indexValue}}</td>
+        </tr>
+    </tbody>
+</table>
