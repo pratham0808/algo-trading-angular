@@ -1,11 +1,12 @@
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th>Order ID</th>
-            <th>Premium Name</th>
+            <th>ID</th>
+            <th>Premium</th>
             <th>Entered At</th>
             <th>Exited At</th>
-            <th>Trade Price</th>
+            <th>Enter Price</th>
+            <th>Exit Price</th>
             <th>Take Profit</th>
             <th>SL Target</th>
             <th>Trade Decision</th>
@@ -21,7 +22,8 @@
             <td>{{tradeData.premiumName}}</td>
             <td>{{formatTime(tradeData.enteredAt)}}</td>
             <td>{{ tradeData.exitedAt ? formatTime(tradeData.exitedAt) : "--"}}</td>
-            <td>{{tradeData.tradePrice}}</td>
+            <td>{{tradeData.enterPrice}}</td>
+            <td>{{tradeData.exitPrice ?? "--"}}</td>
             <td>{{tradeData.takeProfit}}</td>
             <td>{{tradeData.stopLossTarget}}</td>
             <td>{{tradeData.tradeDecision}}</td>

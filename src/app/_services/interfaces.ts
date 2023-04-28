@@ -1,7 +1,8 @@
 export interface ExecutedTradeInf {
     takeProfit: number,
     stopLossTarget: number,
-    tradePrice: number,
+    enterPrice: number,
+    exitPrice? : number,
     enteredAt: Date,
     exitedAt?: Date,
     tradeDecision: TradingDecision,
