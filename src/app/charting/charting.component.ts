@@ -24,7 +24,7 @@ export class ChartingComponent {
         type: 'line'
       },
       title: {
-        text: '7EMA Line'
+        text: 'EMA Line'
       },
       
       plotOptions: {
@@ -45,7 +45,7 @@ export class ChartingComponent {
       },
       series: [{
         type: 'line',
-        name: '7EMA',
+        name: 'EMA',
         data: emaData
       }]
     });

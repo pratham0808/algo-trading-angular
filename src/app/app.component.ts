@@ -36,7 +36,7 @@ export class AppComponent {
         if (sseData.subject === 'total-profit-loss') {
           this.totalProfitLoss = sseData.data;
         }
-        if (sseData.subject === 'ema7-data') {
+        if (sseData.subject === 'ema-data') {
           this.emaPoints = sseData.data;
           this.charting.drawChart(this.emaPoints);
         }
