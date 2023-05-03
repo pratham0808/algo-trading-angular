@@ -15,4 +15,14 @@ export class HttpCallsService {
         return this.http.get(url);
     }
 
+    getTrades() {
+        let url = 'http://localhost:5000/algo/gettrades';
+        return this.http.get(url);
+    }
+
+    getSignals() {
+        let url = 'http://localhost:5000/algo/getsignals';
+        return this.http.get(url);
+    }
+
 }

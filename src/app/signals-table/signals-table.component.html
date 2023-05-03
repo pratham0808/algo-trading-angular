@@ -1,4 +1,4 @@
-<table class="table table-bordered">
+<table class="table table-bordered table-style">
     <thead>
         <tr>
             <th scope="col">Timestamp</th>
@@ -8,7 +8,7 @@
     </thead>
     <tbody>
         <tr *ngFor="let signal of signals">
-            <td>{{signal.timeStamp}}</td>
+            <td>{{formatTime(signal.timeStamp)}}</td>
             <td>{{signal.tradeDecision}}</td>
             <td>{{signal.indexValue}}</td>
         </tr>

@@ -1,5 +1,5 @@
 <div class="parent">
-  <app-signals-table [signals]="signals"></app-signals-table>
+  <!--   <app-signals-table [signals]="signals"></app-signals-table> -->
   <div class="details">
     <button type="button" (click)="startTrading()" class="btn btn-primary rounded-pill">Start!</button>
     <div>
@@ -7,5 +7,10 @@
       <span class="ml-5 fw-bold text-primary">{{totalProfitLoss}}</span>
     </div>
   </div>
-  <app-trades-executed-table [tradeDataArray]="conductedTrades"></app-trades-executed-table>
+  <div style="height: 400px">
+    <app-charting #charting></app-charting>
+  </div>
+  <div class="table-style">
+    <app-trades-executed-table [tradeDataArray]="conductedTrades"></app-trades-executed-table>
+  </div>
 </div>

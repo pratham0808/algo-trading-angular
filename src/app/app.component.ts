@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { ChartingComponent } from './charting/charting.component';
 import { HttpCallsService } from './_services/http-calls.service';
 import { ExecutedTradeInf, SignalInf } from './_services/interfaces';
 import { EventStreamService } from './_services/server-sent-events.service';
@@ -12,11 +13,16 @@ import { EventStreamService } from './_services/server-sent-events.service';
 export class AppComponent {
   constructor(private eventStreamService: EventStreamService, private httpService: HttpCallsService) { }
 
-  conductedTrades : ExecutedTradeInf[] = [];
+  conductedTrades: ExecutedTradeInf[] = [];
   signals: SignalInf[] = [];
+  emaPoints: { timeStamp: Date, ema: number }[] = [];
   totalProfitLoss = 0;
 
+  @ViewChild('charting') charting!: ChartingComponent;
+
   ngOnInit(): void {
+    this.getSignals();
+    this.getTrades();
     this.eventStreamService.subscribeToEventStream('http://localhost:5000/notif/storerequest')
       .subscribe(data => {
         console.log(data);
@@ -30,7 +36,13 @@ export class AppComponent {
         if (sseData.subject === 'total-profit-loss') {
           this.totalProfitLoss = sseData.data;
         }
+        if (sseData.subject === 'ema7-data') {
+          this.emaPoints = sseData.data;
+          this.charting.drawChart(this.emaPoints);
+        }
       });
+
+
   }
 
   ngOnDestroy(): void {
@@ -40,6 +52,18 @@ export class AppComponent {
   startTrading() {
     this.httpService.startTrading().subscribe(data => {
       console.log(data);
+    });
+  }
+
+  getSignals() {
+    this.httpService.getSignals().subscribe((data: any) => {
+      this.signals = data.data;
+    });
+  }
+
+  getTrades() {
+    this.httpService.getTrades().subscribe((data: any) => {
+      this.conductedTrades = data.data;
     });
   }
 
