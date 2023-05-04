@@ -9,46 +9,75 @@ import * as moment from 'moment-timezone';
 })
 export class ChartingComponent {
 
+  chartOptions = {
+    chart: {
+      type: 'line'
+    },
+    title: {
+      text: 'EMA Line'
+    },
+
+    plotOptions: {
+      series: {
+        animation: false
+      }
+    },
+    xAxis: {
+      type: 'datetime',
+      title: {
+        text: 'Time'
+      }
+    } as Highcharts.XAxisOptions,
+    yAxis: {
+      title: {
+        text: 'EMA'
+      }
+    },
+    series: <any>[]
+  }
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  drawChart(emaPoints: { timeStamp: Date, ema: number }[]) {
+  drawCrossoverChart(emaPoints: { timeStamp: Date, ema7: number, ema21: number }[]) {
+    const ema7Data = emaPoints.map((point) => [
+      new Date(moment(point.timeStamp).format('YYYY-MM-DDTHH:mm:ss.SSS[Z]')).getTime(),
+      Math.round(point.ema7)]);
+    const ema21Data = emaPoints.map((point) => [
+      new Date(moment(point.timeStamp).format('YYYY-MM-DDTHH:mm:ss.SSS[Z]')).getTime(),
+      Math.round(point.ema21)]);
+
+    this.chartOptions.series = [
+      {
+        type: 'line',
+        name: '7 EMA',
+        data: ema7Data
+      },
+      {
+        type: 'line',
+        name: '21 EMA',
+        data: ema21Data
+      }
+    ]
+    Highcharts.chart('ema-chart', this.chartOptions);
+  }
+
+  drawSingleChart(emaPoints: { timeStamp: Date, ema: number }[]) {
     const emaData = emaPoints.map((point) => [
-      new Date(moment(point.timeStamp).format('YYYY-MM-DDTHH:mm:ss.SSS[Z]')).getTime(), 
+      new Date(moment(point.timeStamp).format('YYYY-MM-DDTHH:mm:ss.SSS[Z]')).getTime(),
       Math.round(point.ema)]);
 
-    Highcharts.chart('ema-chart', {
-      chart: {
-        type: 'line'
-      },
-      title: {
-        text: 'EMA Line'
-      },
-      
-      plotOptions: {
-        series: {
-          animation: false
-        }
-      },
-      xAxis: {
-        type: 'datetime',
-        title: {
-          text: 'Time'
-        }
-      } as Highcharts.XAxisOptions,
-      yAxis: {
-        title: {
-          text: 'EMA'
-        }
-      },
-      series: [{
+    this.chartOptions.series = [
+      {
         type: 'line',
-        name: 'EMA',
+        name: '7 EMA',
         data: emaData
-      }]
-    });
+      }
+    ]
+    Highcharts.chart('ema-chart', this.chartOptions);
   }
+
 
 }

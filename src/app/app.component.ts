@@ -15,7 +15,8 @@ export class AppComponent {
 
   conductedTrades: ExecutedTradeInf[] = [];
   signals: SignalInf[] = [];
-  emaPoints: { timeStamp: Date, ema: number }[] = [];
+  emaCoPoints: { timeStamp: Date, ema7: number, ema21: number }[] = [];
+  emaSinglePoints: { timeStamp: Date, ema: number }[] = [];
   totalProfitLoss = 0;
 
   @ViewChild('charting') charting!: ChartingComponent;
@@ -36,9 +37,13 @@ export class AppComponent {
         if (sseData.subject === 'total-profit-loss') {
           this.totalProfitLoss = sseData.data;
         }
-        if (sseData.subject === 'ema-data') {
-          this.emaPoints = sseData.data;
-          this.charting.drawChart(this.emaPoints);
+        if (sseData.subject === 'ema-single-data') {
+          /*  this.emaSinglePoints = sseData.data;
+           this.charting.drawSingleChart(this.emaSinglePoints); */
+        }
+        if (sseData.subject === 'ema-crossover-data') {
+          this.emaCoPoints = sseData.data;
+          this.charting.drawCrossoverChart(this.emaCoPoints);
         }
       });
 
@@ -66,5 +71,4 @@ export class AppComponent {
       this.conductedTrades = data.data;
     });
   }
-
 }

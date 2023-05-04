@@ -1,16 +1,11 @@
-<div class="parent">
-  <!--   <app-signals-table [signals]="signals"></app-signals-table> -->
-  <div class="details">
-    <button type="button" (click)="startTrading()" class="btn btn-primary rounded-pill">Start!</button>
-    <div>
-      <span class="fw-bold badge bg-primary">Total Profit/Loss</span>
-      <span class="ml-5 fw-bold text-primary">{{totalProfitLoss}}</span>
-    </div>
-  </div>
-  <div style="height: 400px">
-    <app-charting #charting></app-charting>
-  </div>
-  <div class="table-style">
-    <app-trades-executed-table [tradeDataArray]="conductedTrades"></app-trades-executed-table>
-  </div>
-</div>
+<mat-tab-group>
+  <mat-tab label="Tab 1">
+    This is the content of Tab 1.
+  </mat-tab>
+  <mat-tab label="Tab 2">
+    This is the content of Tab 2.
+  </mat-tab>
+  <mat-tab label="Tab 3">
+    This is the content of Tab 3.
+  </mat-tab>
+</mat-tab-group>
