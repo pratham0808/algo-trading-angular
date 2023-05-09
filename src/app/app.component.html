@@ -1,11 +1,10 @@
-<mat-tab-group>
-  <mat-tab label="Tab 1">
-    This is the content of Tab 1.
+<mat-tab-group (selectedTabChange)="onTabChange($event)">
+  <mat-tab label="Graph">
+    <button class="btn btn-primary btn-lg" (click)="startTrading()">Click Me</button>
+    <app-charting #charting></app-charting>
   </mat-tab>
-  <mat-tab label="Tab 2">
-    This is the content of Tab 2.
+  <mat-tab label="Trades">
+    <app-trades-executed-table [tradeDataArray]="conductedTrades"></app-trades-executed-table>
   </mat-tab>
-  <mat-tab label="Tab 3">
-    This is the content of Tab 3.
-  </mat-tab>
+  <mat-tab label="Third"> Content 3 </mat-tab>
 </mat-tab-group>

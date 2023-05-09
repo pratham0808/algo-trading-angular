@@ -11,7 +11,8 @@ export class ChartingComponent {
 
   chartOptions = {
     chart: {
-      type: 'line'
+      type: 'line',
+      height: 650
     },
     title: {
       text: 'EMA Line'
@@ -61,7 +62,10 @@ export class ChartingComponent {
         data: ema21Data
       }
     ]
-    Highcharts.chart('ema-chart', this.chartOptions);
+    let chart = document.getElementById('ema-chart');
+    if (chart) {
+      Highcharts.chart('ema-chart', this.chartOptions);
+    }
   }
 
   drawSingleChart(emaPoints: { timeStamp: Date, ema: number }[]) {
@@ -72,11 +76,14 @@ export class ChartingComponent {
     this.chartOptions.series = [
       {
         type: 'line',
-        name: '7 EMA',
+        name: 'EMA',
         data: emaData
       }
     ]
-    Highcharts.chart('ema-chart', this.chartOptions);
+    let chart = document.getElementById('ema-chart');
+    if (chart) {
+      Highcharts.chart('ema-chart', this.chartOptions);
+    }
   }
 
 

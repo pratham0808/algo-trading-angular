@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 import { ChartingComponent } from './charting/charting.component';
 import { HttpCallsService } from './_services/http-calls.service';
 import { ExecutedTradeInf, SignalInf } from './_services/interfaces';
@@ -22,24 +23,20 @@ export class AppComponent {
   @ViewChild('charting') charting!: ChartingComponent;
 
   ngOnInit(): void {
-    this.getSignals();
+    //this.getSignals();
     this.getTrades();
     this.eventStreamService.subscribeToEventStream('http://localhost:5000/notif/storerequest')
       .subscribe(data => {
-        console.log(data);
         let sseData = JSON.parse(data);
         if (sseData.subject === 'executed-trades') {
-          this.conductedTrades = sseData.data;
-        }
-        if (sseData.subject === 'signals-sent') {
-          this.signals = sseData.data;
+          this.getTrades();
         }
         if (sseData.subject === 'total-profit-loss') {
           this.totalProfitLoss = sseData.data;
         }
         if (sseData.subject === 'ema-single-data') {
-          /*  this.emaSinglePoints = sseData.data;
-           this.charting.drawSingleChart(this.emaSinglePoints); */
+          this.emaSinglePoints = sseData.data;
+          this.charting.drawSingleChart(this.emaSinglePoints);
         }
         if (sseData.subject === 'ema-crossover-data') {
           this.emaCoPoints = sseData.data;
@@ -70,5 +67,9 @@ export class AppComponent {
     this.httpService.getTrades().subscribe((data: any) => {
       this.conductedTrades = data.data;
     });
+  }
+
+  onTabChange(event: MatTabChangeEvent) {
+    console.log('Tab changed to index', event.index);
   }
 }
