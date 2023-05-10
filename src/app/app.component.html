@@ -1,10 +1,14 @@
 <mat-tab-group (selectedTabChange)="onTabChange($event)">
-  <mat-tab label="Graph">
-    <button class="btn btn-primary btn-lg" (click)="startTrading()">Click Me</button>
-    <app-charting #charting></app-charting>
-  </mat-tab>
   <mat-tab label="Trades">
+    <div style="display: flex">
+      <button style="margin: 5px;" class="btn btn-primary" (click)="startTrading()">Start Scalping</button>
+      <button style="margin: 5px;" class="btn btn-primary" (click)="onAuth()">Authenticate</button>
+      <div style="align-self: center ; font-weight: bold;"> Total Profit/Loss : {{totalProfitLoss}}</div>
+    </div>
     <app-trades-executed-table [tradeDataArray]="conductedTrades"></app-trades-executed-table>
+  </mat-tab>
+  <mat-tab label="Graph">
+    <app-charting #charting></app-charting>
   </mat-tab>
   <mat-tab label="Third"> Content 3 </mat-tab>
 </mat-tab-group>

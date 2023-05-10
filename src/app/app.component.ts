@@ -43,8 +43,6 @@ export class AppComponent {
           this.charting.drawCrossoverChart(this.emaCoPoints);
         }
       });
-
-
   }
 
   ngOnDestroy(): void {
@@ -66,10 +64,24 @@ export class AppComponent {
   getTrades() {
     this.httpService.getTrades().subscribe((data: any) => {
       this.conductedTrades = data.data;
+      this.totalProfitLoss = 0;
+      this.conductedTrades.forEach((trade) => {
+        if (trade.diffInvestment) {
+          this.totalProfitLoss = this.totalProfitLoss + trade.diffInvestment
+        }
+      });
     });
   }
 
   onTabChange(event: MatTabChangeEvent) {
     console.log('Tab changed to index', event.index);
+  }
+
+  onAuth() {
+    this.httpService.getAuth().subscribe((data: any) => {
+      if (data.url) {
+        window.location.href = data.url;
+      }
+    });
   }
 }

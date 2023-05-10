@@ -25,4 +25,9 @@ export class HttpCallsService {
         return this.http.get(url);
     }
 
+    getAuth() {
+        let url = 'http://localhost:5000/algo/auth';
+        return this.http.get(url);
+    }
+
 }
