@@ -9,13 +9,19 @@ import { TradesExecutedTableComponent } from './trades-executed-table/trades-exe
 import { ChartingComponent } from './charting/charting.component';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { MaterialModule } from './material/material.module';
+import { BackTestingGraphComponent } from './back-testing-graph/back-testing-graph.component';
+import StockModule from 'highcharts/modules/stock';
+import * as Highcharts from 'highcharts';
+
+StockModule(Highcharts);
 
 @NgModule({
   declarations: [
     AppComponent,
     SignalsTableComponent,
     TradesExecutedTableComponent,
-    ChartingComponent
+    ChartingComponent,
+    BackTestingGraphComponent
   ],
   imports: [
     BrowserModule,

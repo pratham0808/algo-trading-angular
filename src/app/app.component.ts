@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
+import { BackTestingGraphComponent } from './back-testing-graph/back-testing-graph.component';
 import { ChartingComponent } from './charting/charting.component';
 import { HttpCallsService } from './_services/http-calls.service';
 import { ExecutedTradeInf, SignalInf } from './_services/interfaces';
@@ -21,6 +22,7 @@ export class AppComponent {
   totalProfitLoss = 0;
 
   @ViewChild('charting') charting!: ChartingComponent;
+  @ViewChild('backtest') backtest!: BackTestingGraphComponent;
 
   ngOnInit(): void {
     //this.getSignals();
@@ -75,6 +77,9 @@ export class AppComponent {
 
   onTabChange(event: MatTabChangeEvent) {
     console.log('Tab changed to index', event.index);
+    if(event.index === 2) {
+      this.backtest.backTestingData();
+    }
   }
 
   onAuth() {

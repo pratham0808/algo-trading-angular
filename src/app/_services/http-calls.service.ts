@@ -15,6 +15,11 @@ export class HttpCallsService {
         return this.http.get(url);
     }
 
+    backTestingData() {
+        let url = 'http://localhost:5000/algo/backtesting';
+        return this.http.get(url);
+    }
+
     getTrades() {
         let url = 'http://localhost:5000/algo/gettrades';
         return this.http.get(url);

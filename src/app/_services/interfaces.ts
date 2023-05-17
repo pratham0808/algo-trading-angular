@@ -16,6 +16,14 @@ export interface ExecutedTradeInf {
     lotSize : number
 }
 
+export interface QuoteObj {
+    timestamp : Date,
+    open : number,
+    close : number,
+    high : number,
+    low : number,
+}
+
 export interface SignalInf {
     timeStamp: Date,
     tradeDecision: TradingDecision,
