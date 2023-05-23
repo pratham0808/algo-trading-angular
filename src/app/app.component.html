@@ -11,6 +11,14 @@
     <!-- <app-charting [id]="'actual'" #charting></app-charting> -->
   </mat-tab>
   <mat-tab label="Back Testing">
-    <app-back-testing-graph #backtest></app-back-testing-graph>
+    <!--  <app-back-testing-graph #backtest></app-back-testing-graph> -->
+    <div style="display: flex">
+      <button style="margin: 5px;" class="btn btn-primary" (click)="getBTTrades()">Start Testing</button>
+      <div style="align-self: center ; font-weight: bold;"> Total Profit/Loss : {{totalProfitLoss}}</div>
+      <div style="align-self : center">
+        <input [(ngModel)]="range" class="form-control" type="number">
+      </div>
+    </div>
+    <app-back-tested-trades [tradeDataArray]="btTrades"></app-back-tested-trades>
   </mat-tab>
 </mat-tab-group>

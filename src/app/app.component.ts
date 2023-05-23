@@ -3,7 +3,7 @@ import { MatTabChangeEvent } from '@angular/material/tabs';
 import { BackTestingGraphComponent } from './back-testing-graph/back-testing-graph.component';
 import { ChartingComponent } from './charting/charting.component';
 import { HttpCallsService } from './_services/http-calls.service';
-import { ExecutedTradeInf, SignalInf } from './_services/interfaces';
+import { BTTradesInf, ExecutedTradeInf, SignalInf } from './_services/interfaces';
 import { EventStreamService } from './_services/server-sent-events.service';
 
 @Component({
@@ -16,10 +16,12 @@ export class AppComponent {
   constructor(private eventStreamService: EventStreamService, private httpService: HttpCallsService) { }
 
   conductedTrades: ExecutedTradeInf[] = [];
+  btTrades: BTTradesInf[] = [];
   signals: SignalInf[] = [];
   emaCoPoints: { timeStamp: Date, ema7: number, ema21: number }[] = [];
   emaSinglePoints: { timeStamp: Date, ema: number }[] = [];
   totalProfitLoss = 0;
+  range = 1;
 
   @ViewChild('charting') charting!: ChartingComponent;
   @ViewChild('backtest') backtest!: BackTestingGraphComponent;
@@ -75,10 +77,17 @@ export class AppComponent {
     });
   }
 
+  getBTTrades() {
+    this.httpService.getBtTrades(this.range).subscribe((data: any) => {
+      this.btTrades = data.data;
+      this.totalProfitLoss = Math.round(data.totalProfitLoss);
+    });
+  }
+
   onTabChange(event: MatTabChangeEvent) {
     console.log('Tab changed to index', event.index);
     if(event.index === 2) {
-      this.backtest.backTestingData();
+      //this.backtest.backTestingData();
     }
   }
 

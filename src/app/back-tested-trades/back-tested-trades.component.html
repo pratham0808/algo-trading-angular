@@ -1,0 +1,41 @@
+<!-- 
+    export interface BTTradesInf {
+    tradeTakenIndex: number,
+    stopLossIndex: number,
+    profitTargetIndex: number,
+    status: TradeStatus,
+    profitLoss: number,
+    tradeDecision: TradingDecision,
+    enteredAt: string,
+    exitedAt?: string
+}
+ -->
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Trade taken Index</th>
+            <th>Profit target Index</th>
+            <th>Stop loss Index</th>
+            <th>Status</th>
+            <th>Trade Decision</th>
+            <th>PROFIT LOSS</th>
+            <th>Entered At</th>
+            <th>Exited At</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let tradeData of tradeDataArray">
+            <td>{{tradeData.tradeTakenIndex}}</td>
+            <td>{{tradeData.profitTargetIndex}}</td>
+            <td>{{tradeData.stopLossIndex}}</td>
+            <td class="fw-bold"
+                [ngClass]="{'profit': tradeData.status === 'PROFIT', 'loss': tradeData.status === 'LOSS'}">
+                {{tradeData.status}}</td>
+            <td>{{tradeData.tradeDecision}}</td>
+            <td class="fw-bold">{{tradeData.profitLoss}}</td>
+            <td>{{formatTime(tradeData.enteredAt)}}</td>
+            <td>{{ tradeData.exitedAt ? formatTime(tradeData.exitedAt) : "--"}}</td>
+        </tr>
+    </tbody>
+</table>

@@ -12,6 +12,8 @@ import { MaterialModule } from './material/material.module';
 import { BackTestingGraphComponent } from './back-testing-graph/back-testing-graph.component';
 import StockModule from 'highcharts/modules/stock';
 import * as Highcharts from 'highcharts';
+import { BackTestedTradesComponent } from './back-tested-trades/back-tested-trades.component';
+import { FormsModule } from '@angular/forms';
 
 StockModule(Highcharts);
 
@@ -21,13 +23,15 @@ StockModule(Highcharts);
     SignalsTableComponent,
     TradesExecutedTableComponent,
     ChartingComponent,
-    BackTestingGraphComponent
+    BackTestingGraphComponent,
+    BackTestedTradesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MaterialModule,
     HttpClientModule,
+    FormsModule,
     BrowserAnimationsModule,
     HighchartsChartModule  
   ],

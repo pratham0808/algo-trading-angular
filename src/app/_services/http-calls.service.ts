@@ -25,6 +25,11 @@ export class HttpCallsService {
         return this.http.get(url);
     }
 
+    getBtTrades(range : number) {
+        let url = `http://localhost:5000/algo/backtesting?range=${range}`;
+        return this.http.get(url);
+    }
+
     getSignals() {
         let url = 'http://localhost:5000/algo/getsignals';
         return this.http.get(url);

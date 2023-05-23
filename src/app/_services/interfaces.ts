@@ -48,3 +48,16 @@ export enum TradingDecision {
     EXITPE = "EXITPE",
     NOTRADE = "NO TRADE",
 }
+
+/* ----------------------------------------------------------------------------------------- */
+
+export interface BTTradesInf {
+    tradeTakenIndex: number,
+    stopLossIndex: number,
+    profitTargetIndex: number,
+    status: TradeStatus,
+    profitLoss: number,
+    tradeDecision: TradingDecision,
+    enteredAt: Date,
+    exitedAt?: Date
+}
