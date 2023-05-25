@@ -1,0 +1,18 @@
+<div class="bt-parent">
+    <button class="btn btn-primary" (click)="getBTTrades()">Start Testing</button>
+    <div style="align-self: center ; font-weight: bold;">
+        Total Profit/Loss :
+        <span [ngClass]="{'profit': totalProfitLoss > 0, 'loss': totalProfitLoss < 0}">
+            {{totalProfitLoss}}</span>
+    </div>
+    <div style="align-self : center">
+        <input [(ngModel)]="range" class="form-control" type="number">
+    </div>
+    <div style="align-self: center ; font-weight: bold;"> Win Trades :
+        <span class="profit">{{winTrades}}</span>
+    </div>
+    <div style="align-self: center ; font-weight: bold;"> Lost Trades :
+        <span class="loss">{{lostTrades}}</span>
+    </div>
+</div>
+<app-back-tested-trades [tradeDataArray]="conductedTrades"></app-back-tested-trades>

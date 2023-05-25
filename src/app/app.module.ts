@@ -14,6 +14,8 @@ import StockModule from 'highcharts/modules/stock';
 import * as Highcharts from 'highcharts';
 import { BackTestedTradesComponent } from './back-tested-trades/back-tested-trades.component';
 import { FormsModule } from '@angular/forms';
+import { TradesConsoleComponent } from './trades-console/trades-console.component';
+import { BtTradesConsoleComponent } from './bt-trades-console/bt-trades-console.component';
 
 StockModule(Highcharts);
 
@@ -24,7 +26,9 @@ StockModule(Highcharts);
     TradesExecutedTableComponent,
     ChartingComponent,
     BackTestingGraphComponent,
-    BackTestedTradesComponent
+    BackTestedTradesComponent,
+    TradesConsoleComponent,
+    BtTradesConsoleComponent
   ],
   imports: [
     BrowserModule,

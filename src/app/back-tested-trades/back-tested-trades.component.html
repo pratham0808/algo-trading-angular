@@ -1,27 +1,15 @@
-<!-- 
-    export interface BTTradesInf {
-    tradeTakenIndex: number,
-    stopLossIndex: number,
-    profitTargetIndex: number,
-    status: TradeStatus,
-    profitLoss: number,
-    tradeDecision: TradingDecision,
-    enteredAt: string,
-    exitedAt?: string
-}
- -->
-
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th>Trade taken Index</th>
-            <th>Profit target Index</th>
-            <th>Stop loss Index</th>
-            <th>Status</th>
-            <th>Trade Decision</th>
-            <th>PROFIT LOSS</th>
-            <th>Entered At</th>
-            <th>Exited At</th>
+            <th (click)="onSort('tradeTakenIndex')">Trade taken Index</th>
+            <th (click)="onSort('profitTargetIndex')">Profit target Index</th>
+            <th (click)="onSort('stopLossIndex')">Stop loss Index</th>
+            <th (click)="onSort('exitedAtIndex')">Exited At Index</th>
+            <th (click)="onSort('status')">Status</th>
+            <th (click)="onSort('tradeDecision')">Trade Decision</th>
+            <th (click)="onSort('profitLoss')">PROFIT LOSS</th>
+            <th (click)="onSort('enteredAt')">Entered At</th>
+            <th (click)="onSort('exitedAt')">Exited At</th>
         </tr>
     </thead>
     <tbody>
@@ -29,6 +17,7 @@
             <td>{{tradeData.tradeTakenIndex}}</td>
             <td>{{tradeData.profitTargetIndex}}</td>
             <td>{{tradeData.stopLossIndex}}</td>
+            <td>{{tradeData.exitedAtIndex}}</td>
             <td class="fw-bold"
                 [ngClass]="{'profit': tradeData.status === 'PROFIT', 'loss': tradeData.status === 'LOSS'}">
                 {{tradeData.status}}</td>

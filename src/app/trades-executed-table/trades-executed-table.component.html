@@ -1,38 +1,30 @@
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Premium</th>
-            <th>Entered At</th>
-            <th>Exited At</th>
-            <th>Enter Price</th>
-            <th>Exit Price</th>
-            <th>Take Profit</th>
-            <th>SL Target</th>
-            <th>Trade Decision</th>
-            <th>Lot size</th>
-            <th>Capital</th>
-            <th>Status</th>
-            <th>Amount</th>
+            <th (click)="onSort('tradeTakenIndex')">Trade taken Index</th>
+            <th (click)="onSort('profitTargetIndex')">Profit target Index</th>
+            <th (click)="onSort('stopLossIndex')">Stop loss Index</th>
+            <th (click)="onSort('exitedAtIndex')">Exited At Index</th>
+            <th (click)="onSort('status')">Status</th>
+            <th (click)="onSort('tradeDecision')">Trade Decision</th>
+            <th (click)="onSort('profitLoss')">PROFIT LOSS</th>
+            <th (click)="onSort('enteredAt')">Entered At</th>
+            <th (click)="onSort('exitedAt')">Exited At</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let tradeData of tradeDataArray">
-            <td>{{tradeData.orderId}}</td>
-            <td>{{tradeData.premiumName}}</td>
-            <td>{{formatTime(tradeData.enteredAt)}}</td>
-            <td>{{ tradeData.exitedAt ? formatTime(tradeData.exitedAt) : "--"}}</td>
-            <td>{{tradeData.enterPrice}}</td>
-            <td>{{tradeData.exitPrice ?? "--"}}</td>
-            <td>{{tradeData.takeProfit}}</td>
-            <td>{{tradeData.exitLimit}}</td>
-            <td>{{tradeData.tradeDecision}}</td>
-            <td>{{tradeData.lotSize}}</td>
-            <td>Rs.{{tradeData.investedMoney}}</td>
+            <td>{{tradeData.tradeTakenIndex}}</td>
+            <td>{{tradeData.profitTargetIndex}}</td>
+            <td>{{tradeData.stopLossIndex}}</td>
+            <td>{{tradeData.exitedAtIndex}}</td>
             <td class="fw-bold"
                 [ngClass]="{'profit': tradeData.status === 'PROFIT', 'loss': tradeData.status === 'LOSS'}">
                 {{tradeData.status}}</td>
-            <td class="fw-bold">Rs.{{tradeData.diffInvestment}}</td>
+            <td>{{tradeData.tradeDecision}}</td>
+            <td class="fw-bold">{{tradeData.profitLoss}}</td>
+            <td>{{formatTime(tradeData.enteredAt)}}</td>
+            <td>{{ tradeData.exitedAt ? formatTime(tradeData.exitedAt) : "--"}}</td>
         </tr>
     </tbody>
 </table>

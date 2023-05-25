@@ -1,27 +1,9 @@
-export interface ExecutedTradeInf {
-    takeProfit: number,
-    exitLimit: number,
-    enterPrice: number,
-    exitPrice? : number,
-    enteredAt: Date,
-    exitedAt?: Date,
-    tradeDecision: TradingDecision,
-    orderId: string,
-    premiumName: string,
-    status: TradeStatus,
-    pointsDiff : number,
-    investedMoney : number,
-    diffInvestment : number,
-    instrumentToken : number,
-    lotSize : number
-}
-
 export interface QuoteObj {
-    timestamp : Date,
-    open : number,
-    close : number,
-    high : number,
-    low : number,
+    timestamp: Date,
+    open: number,
+    close: number,
+    high: number,
+    low: number,
 }
 
 export interface SignalInf {
@@ -51,7 +33,7 @@ export enum TradingDecision {
 
 /* ----------------------------------------------------------------------------------------- */
 
-export interface BTTradesInf {
+export interface ExecutedTradeInf {
     tradeTakenIndex: number,
     stopLossIndex: number,
     profitTargetIndex: number,
@@ -59,5 +41,6 @@ export interface BTTradesInf {
     profitLoss: number,
     tradeDecision: TradingDecision,
     enteredAt: Date,
-    exitedAt?: Date
+    exitedAt?: Date,
+    exitedAtIndex?: number,
 }
