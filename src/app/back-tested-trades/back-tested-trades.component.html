@@ -7,6 +7,7 @@
             <th (click)="onSort('exitedAtIndex')">Exited At Index</th>
             <th (click)="onSort('status')">Status</th>
             <th (click)="onSort('tradeDecision')">Trade Decision</th>
+            <th (click)="onSort('riskRewardMove')">RISK REWARD MOVE</th>
             <th (click)="onSort('profitLoss')">PROFIT LOSS</th>
             <th (click)="onSort('enteredAt')">Entered At</th>
             <th (click)="onSort('exitedAt')">Exited At</th>
@@ -22,6 +23,7 @@
                 [ngClass]="{'profit': tradeData.status === 'PROFIT', 'loss': tradeData.status === 'LOSS'}">
                 {{tradeData.status}}</td>
             <td>{{tradeData.tradeDecision}}</td>
+            <td class="fw-bold">{{tradeData.riskRewardMove}}</td>
             <td class="fw-bold">{{tradeData.profitLoss}}</td>
             <td>{{formatTime(tradeData.enteredAt)}}</td>
             <td>{{ tradeData.exitedAt ? formatTime(tradeData.exitedAt) : "--"}}</td>

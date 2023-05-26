@@ -25,8 +25,8 @@ export class HttpCallsService {
         return this.http.get(url);
     }
 
-    getBtTrades(range : number) {
-        let url = `http://localhost:5000/algo/backtesting?range=${range}`;
+    getBtTrades(fromDate: string, toDate: string) {
+        let url = `http://localhost:5000/algo/backtesting?fromDate=${fromDate}&toDate=${toDate}`;
         return this.http.get(url);
     }
 
