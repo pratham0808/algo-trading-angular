@@ -13,6 +13,8 @@ export class BtTradesConsoleComponent {
   totalProfitLoss = 0;
   winTrades = 0;
   lostTrades = 0;
+  winPoints = 0;
+  lostPoints = 0;
   range = new FormGroup({
     start: new FormControl<Date | null>(null),
     end: new FormControl<Date | null>(null),
@@ -30,12 +32,16 @@ export class BtTradesConsoleComponent {
       this.conductedTrades = data.data;
       this.winTrades = 0;
       this.lostTrades = 0;
+      this.winPoints = 0;
+      this.lostPoints = 0;
       this.conductedTrades.forEach((trade) => {
         if (trade.status === TradeStatus.PROFIT) {
           this.winTrades++;
+          this.winPoints = this.winPoints + trade.profitLoss;
         }
         if (trade.status === TradeStatus.LOSS) {
           this.lostTrades++;
+          this.lostPoints = this.lostPoints + trade.profitLoss;
         }
       })
       this.totalProfitLoss = Math.round(data.totalProfitLoss);

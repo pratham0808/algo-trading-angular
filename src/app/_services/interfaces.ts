@@ -38,10 +38,16 @@ export interface ExecutedTradeInf {
     stopLossIndex: number,
     profitTargetIndex: number,
     status: TradeStatus,
-    riskRewardMove : number,
     profitLoss: number,
+    riskRewardMove : number,
     tradeDecision: TradingDecision,
+    enteredAtLTP : number,
     enteredAt: Date,
-    exitedAt?: Date,
+    orderId: string,
+    premiumName: string,
+    lotSize: number,
+    investedMoney: number,
+    exitedAt?: Date
+    exitedAtLTP? : number,
     exitedAtIndex?: number,
 }

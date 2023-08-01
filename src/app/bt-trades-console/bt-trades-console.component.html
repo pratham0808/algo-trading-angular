@@ -18,10 +18,10 @@
         </mat-form-field>
     </div>
     <div style="align-self: center ; font-weight: bold;"> Win Trades :
-        <span class="profit">{{winTrades}}</span>
+        <span class="profit">{{winTrades}} ({{winPoints}})</span>
     </div>
     <div style="align-self: center ; font-weight: bold;"> Lost Trades :
-        <span class="loss">{{lostTrades}}</span>
+        <span class="loss">{{lostTrades}} ({{lostPoints}})</span>
     </div>
 </div>
 <app-back-tested-trades [tradeDataArray]="conductedTrades"></app-back-tested-trades>
